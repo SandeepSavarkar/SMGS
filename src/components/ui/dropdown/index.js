@@ -25,7 +25,7 @@ export default function DropDown() {
       min={0}
       max={5}
       //modalContentContainerStyle={{marginHorizontal:ThemeUtils.relativeWidth(2),marginLeft:100}}
-     // style={{marginHorizontal:ThemeUtils.relativeWidth(2),padding: 0}}
+      style={{marginHorizontal:ThemeUtils.relativeWidth(2),padding: 0}}
     />
   );
 }

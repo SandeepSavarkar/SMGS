@@ -19,7 +19,7 @@ import Radios from '../../components/ui/radio';
 import Heading from '../../components/ui/headings';
 import Pickers from '../../components/ui/picker';
 import DropDown from '../../components/ui/dropdown';
-import DATA from '../../utils/data';
+import {usersData} from '../../utils/data';
 import {DatePicker} from '../../components/ui/datepicker';
 import CardComponent from '../../components/ui/normalcard';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -29,12 +29,12 @@ import Header from '../../components/ui/header';
 import Model from '../../components/ui/model';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const renderTopCategories = ({item}) => (
+renderSpecialists = (item) => (
   <CardComponent
-    img={require('../../assests/images/onBoard2.jpg')}
-    label="Sandy"
+    img={item.img}
+    label={item.name}
     style={{
-      width: ThemeUtils.relativeWidth(25),
+      width: ThemeUtils.relativeWidth(24),
       height: ThemeUtils.relativeHeight(15),
     }}
     imgstyle={{
@@ -47,7 +47,7 @@ const renderTopCategories = ({item}) => (
 class BookService extends Component {
   state = {
     isModalVisible: false,
-    imageModal : false
+    imageModal : true
   };
 
   _hideModal = () => {
@@ -92,11 +92,13 @@ getPic = (type) => {
 
 
   ImageUploadModal = () => {
+    console.log("UNder IMage MOdel----"+this.state.imageModal);
+    this._hideModal()
     return (
         <Modal
             animationType="slide"
             transparent={true}
-            visible={this.state.modalVisible}
+            visible={this.state.imageModal}
             onRequestClose={() => this.setModalVisible(false)}
         >
             <View
@@ -133,7 +135,21 @@ getPic = (type) => {
     )
 }
 
-
+renderSpecialists = (item) => (
+  <CardComponent
+    img={item.img}
+    label={item.name}
+    style={{
+      width: ThemeUtils.relativeWidth(24),
+      height: ThemeUtils.relativeHeight(15),
+    }}
+    imgstyle={{
+      width: ThemeUtils.relativeWidth(20),
+      height: ThemeUtils.relativeHeight(10),
+      borderRadius: 200,
+    }}
+  />
+);
   render() {
     //console.log(this.props.data.user);
     return (
@@ -194,8 +210,8 @@ getPic = (type) => {
                   subtitle="View all"
                 />
                 <FlatList
-                  data={DATA}
-                  renderItem={renderTopCategories}
+                  data={usersData}
+                  renderItem={({item})=>this.renderSpecialists(item)}
                   keyExtractor={item => item.id}
                   horizontal={true}
                 />
@@ -275,7 +291,7 @@ getPic = (type) => {
                     visible={this.state.isModalVisible}
                     btn_liveCam="Open Live Camera"
                     btn_uploadImg="Upload Image"
-                    onPress={() => this.ImageUploadModal()}
+                    onPress={()=>this.ImageUploadModal()}
                   />
                 ) : null}
               </View>

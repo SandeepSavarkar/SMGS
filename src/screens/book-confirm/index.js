@@ -256,19 +256,7 @@ class BookConfirm extends Component {
                       height: ThemeUtils.relativeHeight(5),
                     }}
                   />
-                  <PaymentCard
-                    img={require('../../assests/images/visa.png')}
-                    paymentType="Google Pay"
-                    subtitle="Upi or something"
-                    style={{
-                      height: ThemeUtils.relativeHeight(8),
-                      width: ThemeUtils.relativeWidth(96),
-                    }}
-                    imgstyle={{
-                      width: ThemeUtils.relativeWidth(10),
-                      height: ThemeUtils.relativeHeight(5),
-                    }}
-                  />
+                 
                 </View>
                 <View
                   style={{
@@ -290,8 +278,7 @@ class BookConfirm extends Component {
                 visible={this.state.isModalVisible}
                 btn_msg1=" Continue Booking"
                 btn_msg2 = "Redirect to Home"
-                onPress={() =>  this.ImageUploadModal() 
-                }
+                onPress={this._hideModal}
               />
             ) : null}
             {/* <FlatList

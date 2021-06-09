@@ -36,7 +36,7 @@ import ImageSwiper from '../../components/ui/swiper/';
 import {Col} from 'native-base';
 
 import {ScrollView} from 'react-native-gesture-handler';
-import DATA, {topCategory} from '../../utils/data';
+import DATA, {topCategory,usersData} from '../../utils/data';
 import LeafButton from '../../components/ui/leafbutton';
 
 
@@ -64,13 +64,28 @@ class Home extends Component {
   renderTopCategories = (item) => (
     <CardComponent
       img={item.img}
-      label={item.shopname}
+      label={item.categoryName}
       style={{
         width: ThemeUtils.relativeWidth(24),
         height: ThemeUtils.relativeHeight(15),
       }}
       imgstyle={{
-        width: ThemeUtils.relativeWidth(18),
+        width: ThemeUtils.relativeWidth(20),
+        height: ThemeUtils.relativeHeight(10),
+        borderRadius: 200,
+      }}
+    />
+  );
+  renderSpecialists = (item) => (
+    <CardComponent
+      img={item.img}
+      label={item.name}
+      style={{
+        width: ThemeUtils.relativeWidth(24),
+        height: ThemeUtils.relativeHeight(15),
+      }}
+      imgstyle={{
+        width: ThemeUtils.relativeWidth(20),
         height: ThemeUtils.relativeHeight(10),
         borderRadius: 200,
       }}
@@ -130,7 +145,7 @@ class Home extends Component {
                 subtitle="View all"
               />
               <FlatList
-                data={DATA}
+                data={topCategory}
                 renderItem={({item})=>this.renderTopCategories(item)}
                 keyExtractor={item => item.id}
                 horizontal={true}
@@ -156,9 +171,9 @@ class Home extends Component {
                 subtitle="View all"
               />
               <FlatList
-                data={DATA}
+                data={usersData}
 
-                renderItem={({item})=>this.renderTopCategories(item)}
+                renderItem={({item})=>this.renderSpecialists(item)}
                 keyExtractor={item => item.id}
                 horizontal
                 showsHorizontalScrollIndicator={false}

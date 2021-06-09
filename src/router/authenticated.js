@@ -6,11 +6,12 @@ import {Color, ThemeUtils} from '../utils/';
 import Home from '../screens/home';
 import Profile from '../screens/profile';
 import BookService from '../screens/book-appointment';
-import BookConfirm from "../screens/book-confirm";
+import BookConfirm from '../screens/book-confirm';
 import Nearby from '../screens/nearby';
 import Label from '../components/ui/label';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icons from 'react-native-vector-icons/MaterialIcons';
+import Iconss from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import OnBoarding from '../screens/onboarding';
 import {Header} from 'react-native/Libraries/NewAppScreen';
@@ -94,8 +95,8 @@ function MyDrawer() {
         options={{
           title: 'Home',
           drawerIcon: ({focused, size}) => (
-            <Icon
-              name="home"
+            <Iconss
+              name="md-home-outline"
               size={size}
               color={focused ? Color.PRIMARY : '#ccc'}
             />
@@ -132,7 +133,7 @@ function MyDrawer() {
 
 const HomeScreen = () => {
   return (
-    <Stack.Navigator initialRouteName={Routes.Home}>
+    <Stack.Navigator initialRouteName={Routes.BookScreen}>
       <Stack.Screen
         name={Routes.Home}
         options={{headerShown: false}}
@@ -157,13 +158,11 @@ const HomeScreen = () => {
         name={Routes.BookService}
         options={{headerShown: false}}
         component={BookService}></Stack.Screen>
-        <Stack.Screen
+      <Stack.Screen
         name={Routes.BookConfirm}
         options={{headerShown: false}}
         component={BookConfirm}></Stack.Screen>
     </Stack.Navigator>
-
-    
   );
 };
 
@@ -174,13 +173,19 @@ class Authenticated extends Component {
       //   <Stack.Screen name={Routes.Home}  options={{headerShown:false}} component={Home}></Stack.Screen>
       // </Stack.Navigator>
 
-      <Tab.Navigator>
+      <Tab.Navigator
+        tabBarOptions={{activeTintColor:Color.PRIMARY_DARK,
+          style: {height: 60},
+          labelStyle: {marginBottom: 12},
+          //iconStyle: {color:Color.PRIMARY_DARK }
+        }} 
+        >
         <Tab.Screen
           name={Routes.Home}
           component={HomeScreen}
           options={{
             tabBarIcon: ({color, size}) => (
-              <Icon name="home" color={color} size={size} />
+              <Iconss name="md-home-outline" color={Color.PRIMARY_DARK}  size={size} />
             ),
           }}
         />
@@ -189,7 +194,7 @@ class Authenticated extends Component {
           component={Nearby}
           options={{
             tabBarIcon: ({color, size}) => (
-              <Icon name="map-marker" color={color} size={size} />
+              <Icon name="map-marker-radius-outline"  size={size} />
             ),
           }}
         />
@@ -198,7 +203,7 @@ class Authenticated extends Component {
           component={BookService}
           options={{
             tabBarIcon: ({color, size}) => (
-              <Icon name="calendar-check-outline" color={color} size={size} />
+              <Iconss name="md-calendar-outline"  size={size} />
             ),
           }}
         />
@@ -208,7 +213,7 @@ class Authenticated extends Component {
           component={Profile}
           options={{
             tabBarIcon: ({color, size}) => (
-              <Icons name="person" color={color} size={size} />
+              <Iconss name="person-circle-outline"  size={size} />
             ),
           }}
         />
