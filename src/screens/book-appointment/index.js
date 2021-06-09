@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Alert, SafeAreaView, Image, FlatList} from 'react-native';
+import {View, Text, Alert, SafeAreaView, Image, FlatList, TouchableOpacity,Modal} from 'react-native';
 import Style from '../../utils/CommonStyles';
 import Styles from '../../utils/CommonStyles';
 import {connect} from 'react-redux';
@@ -27,6 +27,7 @@ import LeafButton from '../../components/ui/leafbutton';
 import BackButton from '../../components/ui/backbutton';
 import Header from '../../components/ui/header';
 import Model from '../../components/ui/model';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const renderTopCategories = ({item}) => (
   <CardComponent
@@ -46,11 +47,92 @@ const renderTopCategories = ({item}) => (
 class BookService extends Component {
   state = {
     isModalVisible: false,
+    imageModal : false
   };
 
   _hideModal = () => {
     this.setState({isModalVisible: false});
   };
+
+  setModalVisible = (status) => {
+    this.setState({ imageModal: true })
+}
+
+getPic = (type) => {
+  switch (type) {
+      case "camera":
+          launchCamera(
+              {
+                  mediaType: 'photo',
+                  includeBase64: false,
+                  maxHeight: 200,
+                  maxWidth: 200,
+              },
+              (response) => {
+                  this.imageResponse(response);
+              },
+          )
+          break;
+
+      default:
+          launchImageLibrary(
+              {
+                  mediaType: 'photo',
+                  includeBase64: false,
+                  maxHeight: 200,
+                  maxWidth: 200,
+              },
+              (response) => {
+                  this.imageResponse(response);
+              },
+          )
+          break;
+  }
+}
+
+
+  ImageUploadModal = () => {
+    return (
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => this.setModalVisible(false)}
+        >
+            <View
+                style={styles.modalContainer}
+            >
+                <View style={styles.modalInnerContainer}>
+                    <TouchableOpacity
+                        style={{ alignSelf: 'flex-end' }}
+                        onPress={() => this.setModalVisible(false)}
+                    >
+                        <Icon name="close" size={ThemeUtils.relativeWidth(7)} color={Color.BLACK} />
+                    </TouchableOpacity>
+                    <View style={styles.modalInnerButton}>
+                        <TouchableOpacity
+                            style={styles.camereImage}
+                            onPress={() => this.getPic("camera")}
+                        >
+                            <Icon name="camera" size={ThemeUtils.relativeWidth(7)} color={Color.BLACK} />
+                            <Text style={styles.cameraText}>Take Pic</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={styles.camereImage}
+                            onPress={() => this.getPic("photo")}
+                        >
+                            <Icon name="camera" size={ThemeUtils.relativeWidth(7)} color={Color.BLACK} />
+                            <Text style={styles.cameraText}>Select image</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+            </View>
+        </Modal>
+    )
+}
+
 
   render() {
     //console.log(this.props.data.user);
@@ -90,11 +172,15 @@ class BookService extends Component {
                   color={Color.PRIMARY_DARK}
                   //  toggle
                 />
-                <Button
-                  btn_xs
+
+                <TouchableOpacity onPress={() => this.setState({isModalVisible: true})}>
+                  <Icon name="chevron-forward-outline" size={25} />
+                </TouchableOpacity>
+                {/* <Button
+                  btn_sm
                   text="Check AI"
                   onPress={() => this.setState({isModalVisible: true})}
-                />
+                /> */}
               </View>
 
               <View>
@@ -189,7 +275,7 @@ class BookService extends Component {
                     visible={this.state.isModalVisible}
                     btn_liveCam="Open Live Camera"
                     btn_uploadImg="Upload Image"
-                    onPress={() => this._hideModal()}
+                    onPress={() => this.ImageUploadModal()}
                   />
                 ) : null}
               </View>
