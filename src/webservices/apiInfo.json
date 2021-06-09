@@ -1,0 +1,123 @@
+{
+  "info": {
+    "_postman_id": "555f65af-e5a9-4962-9fbb-515b7a8038fb",
+    "name": "Dummy_auth_api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User SignIn",
+      "id": "1b2f6c50-d433-47aa-ba51-0aaf481526f0",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\":\"d@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "https://plantbookingapi.herokuapp.com/signin"
+      },
+      "response": []
+    },
+    {
+      "name": "Change Password",
+      "id": "319ac9af-b67e-4349-a6ec-f4d343613659",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{front_token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"newPassword\":\"123456\",\r\n    \"oldPassword\":\"1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "https://plantbookingapi.herokuapp.com/60576a363aac51568ca70bf1"
+      },
+      "response": []
+    },
+    {
+      "name": "Forget Password",
+      "id": "192936d1-cfe3-4059-adcc-04adc90db009",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\":\"vimalpuserone@gmail.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "https://plantbookingapi.herokuapp.com/forgotPassword"
+      },
+      "response": []
+    },
+    {
+      "name": "Create User",
+      "id": "02a047f6-72e7-4558-bd50-7e178310360f",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Vimal",
+              "type": "text"
+            },
+            {
+              "key": "email",
+              "value": "vimalpuserone@gmail.com",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "text"
+            },
+            {
+              "key": "photo",
+              "type": "file",
+              "src": "/C:/Users/vrpme/Downloads/fewc8ez6r2e2agah717y.png"
+            }
+          ]
+        },
+        "url": "https://plantbookingapi.herokuapp.com/createUser"
+      },
+      "response": []
+    },
+    {
+      "name": "veryfy token",
+      "id": "74cca109-e605-4b83-9969-3363b963c8ad",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{front_token}}",
+            "type": "text"
+          }
+        ],
+        "url": "https://plantbookingapi.herokuapp.com/userVerifyToken"
+      },
+      "response": []
+    }
+  ]
+}
