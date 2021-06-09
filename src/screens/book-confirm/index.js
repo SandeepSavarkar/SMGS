@@ -290,7 +290,7 @@ class BookConfirm extends Component {
                 visible={this.state.isModalVisible}
                 btn_msg1=" Continue Booking"
                 btn_msg2 = "Redirect to Home"
-                onPress={() => this._hideModal()
+                onPress={() =>  this.ImageUploadModal() 
                 }
               />
             ) : null}

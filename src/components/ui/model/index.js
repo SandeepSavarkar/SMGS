@@ -3,31 +3,31 @@ import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
 import Button from '../button';
 import {styles} from './style';
 import Label from '../label';
-import {Color} from '../../../utils';
+import {Color, ThemeUtils} from '../../../utils';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const getContent = props => {
   console.log(props);
-  if (props.hairfilter) {
-   
-    return
-    <View>
-      <Animatable.View animation="bounceInUp" style={{alignItems: 'center'}}>
-        <Icon
-          name="checkmark-circle-outline"
-          size={100}
-          color={Color.PRIMARY_DARK}
-        />
-      </Animatable.View>
-      <Button btn_lg text={props.btn_msg1} onPress={props.onPress} />
-      <Button btn_lg text={props.btn_msg2} onPress={props.onPress} />
-    </View>;
+  if (props.hairFilter) {
+    return (
+      <View
+        style={{
+          marginTop: ThemeUtils.relativeHeight(10),
+        }}>
+        <View style={{marginVertical: 20}}>
+          <Button btn_lg text="Open Live Camera" onPress={props.onPress} />
+        </View>
+        <View>
+          <Button btn_lg text="Upload Image" onPress={props.onPress} />
+        </View>
+      </View>
+    );
   }
 
   if (props.payment) {
     return (
-      <View>
+      <View style={{justifyContent: 'space-around'}}>
         <Animatable.View animation="bounceInUp" style={{alignItems: 'center'}}>
           <Icon
             name="checkmark-circle-outline"
@@ -42,10 +42,10 @@ const getContent = props => {
         <Label large mt={10} color={Color.WHITE} align="center">
           Please reach the salon on tha alloted time.
         </Label>
+        <Button btn_lg text="Continue Booking" onPress={props.onPress} />
       </View>
     );
-  } 
-  else {
+  } else {
     return (
       <View>
         <Label xxlarge bolder align="center" color={Color.WHITE}>
@@ -54,15 +54,16 @@ const getContent = props => {
         <Label large mt={10} color={Color.WHITE} align="center">
           You will shortly receive an code to create a new password.
         </Label>
+        <Button btn_lg text="Done" onPress={props.onPress} />
       </View>
     );
   }
 };
 
 const Model = props => {
-  useEffect (()=>{
+  useEffect(() => {
     getContent(props);
-  })
+  });
 
   console.log('Under Modal');
   return (
@@ -77,13 +78,12 @@ const Model = props => {
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            
             {getContent(props)}
-            {props.btn_msg1 ? (
+            {/* {props.btn_msg1 ? (
               <Button btn_lg text="Done" onPress={props.onPress} />
             ) : (
               <Button btn_lg text="Done" onPress={props.onPress} />
-            )}
+            )} */}
           </View>
         </View>
       </Modal>
