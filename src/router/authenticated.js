@@ -25,6 +25,8 @@ import {
 } from '@react-navigation/drawer';
 import Search from '../screens/search/index.js';
 import Filter from '../screens/filter/';
+import TryOn from '../screens/try-on';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -133,7 +135,7 @@ function MyDrawer() {
 
 const HomeScreen = () => {
   return (
-    <Stack.Navigator initialRouteName={Routes.BookScreen}>
+    <Stack.Navigator initialRouteName={Routes.Home}>
       <Stack.Screen
         name={Routes.Home}
         options={{headerShown: false}}
@@ -150,10 +152,7 @@ const HomeScreen = () => {
         name={Routes.Search}
         options={{headerShown: false}}
         component={Search}></Stack.Screen>
-      <Stack.Screen
-        name={Routes.Filter}
-        options={{headerShown: false}}
-        component={Filter}></Stack.Screen>
+
       <Stack.Screen
         name={Routes.BookService}
         options={{headerShown: false}}
@@ -166,58 +165,81 @@ const HomeScreen = () => {
   );
 };
 
+const MainTAbNavigation = () => {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: Color.PRIMARY_DARK,
+        style: {height: 60},
+        labelStyle: {marginBottom: 12},
+        //iconStyle: {color:Color.PRIMARY_DARK }
+      }}>
+      <Tab.Screen
+        name={Routes.Home}
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Iconss
+              name="md-home-outline"
+              color={Color.PRIMARY_DARK}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={Routes.Nearby}
+        component={Nearby}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name="map-marker-radius-outline" size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={Routes.BookService}
+        component={BookService}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Iconss name="md-calendar-outline" size={size} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name={Routes.Profile}
+        component={Profile}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Iconss name="person-circle-outline" size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
 class Authenticated extends Component {
   render() {
     return (
       // <Stack.Navigator>
       //   <Stack.Screen name={Routes.Home}  options={{headerShown:false}} component={Home}></Stack.Screen>
       // </Stack.Navigator>
+      <Stack.Navigator initialRouteName={Routes.TryOn}>
+        <Stack.Screen
+          name={'MainScreen'}
+          options={{headerShown: false}}
+          component={MainTAbNavigation}></Stack.Screen>
+        <Stack.Screen
+          name={Routes.Filter}
+          options={{headerShown: false}}
+          component={Filter}></Stack.Screen>
 
-      <Tab.Navigator
-        tabBarOptions={{activeTintColor:Color.PRIMARY_DARK,
-          style: {height: 60},
-          labelStyle: {marginBottom: 12},
-          //iconStyle: {color:Color.PRIMARY_DARK }
-        }} 
-        >
-        <Tab.Screen
-          name={Routes.Home}
-          component={HomeScreen}
-          options={{
-            tabBarIcon: ({color, size}) => (
-              <Iconss name="md-home-outline" color={Color.PRIMARY_DARK}  size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name={Routes.Nearby}
-          component={Nearby}
-          options={{
-            tabBarIcon: ({color, size}) => (
-              <Icon name="map-marker-radius-outline"  size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name={Routes.BookService}
-          component={BookService}
-          options={{
-            tabBarIcon: ({color, size}) => (
-              <Iconss name="md-calendar-outline"  size={size} />
-            ),
-          }}
-        />
-
-        <Tab.Screen
-          name={Routes.Profile}
-          component={Profile}
-          options={{
-            tabBarIcon: ({color, size}) => (
-              <Iconss name="person-circle-outline"  size={size} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+        <Stack.Screen
+          name={Routes.TryOn}
+          options={{headerShown: false}}
+          component={TryOn}></Stack.Screen>
+      </Stack.Navigator>
     );
   }
 }

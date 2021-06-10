@@ -13,7 +13,7 @@ export default class CardComponent extends Component {
                   <View>
               <Image
                 style={[Style.img,this.props.imgstyle,]}
-                resizeMode="cover"
+                resizeMode="contain"
                 source={this.props.img}
               />
               </View>

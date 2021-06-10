@@ -76,6 +76,8 @@ class LeafButton extends React.Component {
         paddingHorizontal: Platform.OS == 'ios' ? 10 : 20,
         paddingVertical: 12,
         width: '100%',
+        borderTopLeftRadius: 10,
+        borderBottomRightRadius: 10,
       });
       btnTextStylesArray.push({
         fontSize: hp(2),
@@ -105,12 +107,13 @@ class LeafButton extends React.Component {
       //borderColor: this.props.borderColor,
       alignItems: 'center',
      // borderRadius: this.props.border_radius,
-      borderWidth: 1,
+     // borderWidth: 1,
       // borderBottomWidth: 0,
       marginTop: this.props.mt,
       marginBottom: this.props.mb,
       marginStart: this.props.ms,
       marginEnd: this.props.me,
+      
 
       // elevation: 5
     });

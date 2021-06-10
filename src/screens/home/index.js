@@ -38,6 +38,7 @@ import {Col} from 'native-base';
 import {ScrollView} from 'react-native-gesture-handler';
 import DATA, {topCategory,usersData} from '../../utils/data';
 import LeafButton from '../../components/ui/leafbutton';
+import SubsCard from '../../components/ui/subs-card';
 
 
 class Home extends Component {
@@ -57,7 +58,7 @@ class Home extends Component {
       address={item.address}
       rating={item.rating}
       openTime={item.openTime}
-     onPress={() => this.props.navigation.navigate(Routes.BookService)}
+     onPress={() => this.props.navigation.navigate(Routes.ViewSalons)}
     />
   );
   
@@ -144,6 +145,7 @@ class Home extends Component {
                 color={Color.PRIMARY_DARK}
                 subtitle="View all"
               />
+              {/* <VirtualizedList> */}
               <FlatList
                 data={topCategory}
                 renderItem={({item})=>this.renderTopCategories(item)}
@@ -151,6 +153,7 @@ class Home extends Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
               />
+              {/* </VirtualizedList> */}
             </View>
 
             <View style={Style.mv}>
@@ -181,7 +184,7 @@ class Home extends Component {
             </View>
             <View style={Style.mv}>
               <Heading
-                title="Popular Salons Nearby"
+                title="Popular Branches Nearby"
                 color={Color.PRIMARY_DARK}
                 subtitle="View all"
               />
@@ -193,6 +196,14 @@ class Home extends Component {
   
                 horizontal={true}
               />
+            </View>
+            <View style={Style.mv}>
+              <Heading
+                title="VIP Subscriptions"
+                color={Color.PRIMARY_DARK}
+                subtitle="Swipe>>"
+              />
+            <SubsCard />
             </View>
             <View style={Style.mv}>
               <Heading

@@ -1,17 +1,18 @@
 import { StyleSheet} from 'react-native'
-import { ThemeUtils } from "../../../utils";
+import { Color, ThemeUtils } from "../../../utils";
 export const styles = StyleSheet.create({
     centeredView: {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 22
+      marginTop: 22,
+      backgroundColor: 'rgba(0,0,0,0.7)',
     },
     modalView: {
       width:ThemeUtils.relativeWidth(90),
       height:ThemeUtils.relativeHeight(45),
       margin: 20,
-      backgroundColor: "rgba(0,0,0,0.9)",
+      backgroundColor: Color.WHITE,
       borderRadius: 20,
       padding: 35,
       justifyContent:'space-between',
@@ -21,7 +22,7 @@ export const styles = StyleSheet.create({
         width: 0,
         height: 2
       },
-      shadowOpacity: 0.25,
+      shadowOpacity: 0.25, 
       shadowRadius: 4,
       elevation: 5
     },

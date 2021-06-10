@@ -50,7 +50,7 @@ export default class ImageSwiper extends React.Component {
         {DATA.map((item, i) => {
         
           return (
-            <View style={styles.slide}>
+            <View  key={item.id} style={styles.slide}>
               {/* <Text> {item.id} </Text> */}
               <Image resizeMode='cover' style={{width:ThemeUtils.relativeWidth(96),height:ThemeUtils.relativeHeight(20)}}  source={item.img} />
             </View>

@@ -11,7 +11,7 @@ const Header = props => {
       style={{
         marginHorizontal: ThemeUtils.relativeWidth(2),
         flexDirection: 'row',
-        // justifyContent: props.justifyContent,
+        justifyContent: 'space-between',
         paddingVertical: 15,
       }}>
       <TouchableOpacity
@@ -27,9 +27,12 @@ const Header = props => {
         <Icon name="chevron-back-outline" size={25} />
       </TouchableOpacity>
       <View style={{alignSelf: 'center'}}>
-        <Label ms={ThemeUtils.relativeWidth(25)} bolder xxlarge>
+        <Label bolder xxlarge>
           {props.title}
         </Label>
+      </View>
+      <View>
+        <Label>        </Label>
       </View>
     </View>
   );

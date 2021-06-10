@@ -39,7 +39,7 @@ import Model from '../../components/ui/model';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DATA from '../../utils/data';
 import SpecialCard from '../../components/ui/cardspl';
-
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 renderSpeacialItem = item => (
   <SpecialCard
@@ -70,18 +70,19 @@ renderSpecialists = item => (
 class BookService extends Component {
   state = {
     isModalVisible: false,
-    imageModal: true,
+    imageModal: false,
+
   };
 
   _hideModal = () => {
-    this.setState({isModalVisible: false});
+    this.setState({isModalVisible: false, imageModal: true});
   };
 
   setModalVisible = status => {
-    this.setState({imageModal: true});
+    this.setState({imageModal: false});
   };
 
-  showPackages=() =>{
+  showPackages = () => {
     return (
       <View style={Style.mv}>
         <Heading
@@ -99,7 +100,26 @@ class BookService extends Component {
       </View>
     );
   };
-  
+
+  imageResponse = response => {
+
+    
+    console.log( "Response ",response );
+    if (response.didCancel) {
+      console.log('you cancelled');
+    } else if (response.error) {
+      console.log('error is occured');
+    } else if (response.customButton) {
+      console.log('cutome button');
+    } else {
+      var imgUrl = response.uri;
+      // console.log("URI", response.assets.uri);
+
+      this.setState({selectedImage: imgUrl, selectedImageFile: response});
+      this.setModalVisible(false);
+    }
+  };
+
   getPic = type => {
     switch (type) {
       case 'camera':
@@ -134,7 +154,7 @@ class BookService extends Component {
 
   ImageUploadModal = () => {
     console.log('UNder IMage MOdel----' + this.state.imageModal);
-    this._hideModal();
+    // this._hideModal();
     return (
       <Modal
         animationType="slide"
@@ -145,11 +165,11 @@ class BookService extends Component {
           <View style={styles.modalInnerContainer}>
             <TouchableOpacity
               style={{alignSelf: 'flex-end'}}
-              onPress={() => this.setModalVisible(false)}>
+              onPress={() => {this.setModalVisible(false);}}>
               <Icon
                 name="close"
                 size={ThemeUtils.relativeWidth(7)}
-                color={Color.BLACK}
+                color={Color.PRIMARY}
               />
             </TouchableOpacity>
             <View style={styles.modalInnerButton}>
@@ -159,7 +179,7 @@ class BookService extends Component {
                 <Icon
                   name="camera"
                   size={ThemeUtils.relativeWidth(7)}
-                  color={Color.BLACK}
+                  color={Color.PRIMARY}
                 />
                 <Text style={styles.cameraText}>Take Pic</Text>
               </TouchableOpacity>
@@ -170,7 +190,7 @@ class BookService extends Component {
                 <Icon
                   name="camera"
                   size={ThemeUtils.relativeWidth(7)}
-                  color={Color.BLACK}
+                  color={Color.PRIMARY}
                 />
                 <Text style={styles.cameraText}>Select image</Text>
               </TouchableOpacity>
@@ -201,6 +221,7 @@ class BookService extends Component {
     return (
       <SafeAreaView style={Style.container}>
         {/* <BackButton icon="angle-left"/> */}
+        {this.ImageUploadModal()}
         <Header
           title="Booking details"
           onPress={() => this.props.navigation.goBack()}
@@ -225,7 +246,7 @@ class BookService extends Component {
                   color={Color.PRIMARY_DARK}
                   subtitle="Total $35.5"
                 />
-                <DropDown  onChange={()=>this.showPackages()}/>
+                <DropDown  br onChange={() => this.showPackages()} />
               </View>
 
               <View style={styles.tryOnContainer}>
@@ -248,7 +269,7 @@ class BookService extends Component {
 
               <View>
                 <Heading title="Select your date" color={Color.PRIMARY_DARK} />
-                <DatePicker o/>
+                <DatePicker o />
               </View>
               <View style={Style.mv}>
                 <Heading
@@ -331,16 +352,16 @@ class BookService extends Component {
                 horizontal={true}
               /> */}
 
-                {this.state.isModalVisible ? (
                   <Model
-                    //payment="payment"
+                    payment="payment"
                     hairFilter="hairFilter"
-                    visible={this.state.isModalVisible}
-                    btn_liveCam="Open Live Camera"
+                    modalVisible={this.state.isModalVisible}
+                    btn_liveCam=""
                     btn_uploadImg="Upload Image"
-                    onPress={() => this.ImageUploadModal()}
+                    onPress={this._hideModal}
+                    onPressLiveCam={()=>this.props.navigation.navigate(Routes.TryOn)}
                   />
-                ) : null}
+                  
               </View>
             </ScrollView>
           </View>

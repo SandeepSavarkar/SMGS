@@ -69,7 +69,7 @@ const BookDetail = props => {
           style={{
             borderRadius: 10,
             width: ThemeUtils.relativeWidth(33),
-            height: ThemeUtils.relativeHeight(19),
+            height: ThemeUtils.relativeHeight(18),
             marginVertical: 10,
           }}
           resizeMode="cover"
@@ -79,8 +79,10 @@ const BookDetail = props => {
       <View
         style={{
           width: ThemeUtils.relativeWidth(50),
+          height: ThemeUtils.relativeHeight(19),
           marginLeft: 10,
           justifyContent: 'space-around',
+
         }}>
         <View
           style={{
@@ -198,7 +200,7 @@ class BookConfirm extends Component {
                 total="$46545"
               />
               <View style={Styles.mv}>
-                <Label recentSearch bold xlarge>
+                <Label recentSearch bold large>
                   Friday, 25,August 2019 @ 8:00 am
                 </Label>
               </View>

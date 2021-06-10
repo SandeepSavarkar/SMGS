@@ -6,6 +6,8 @@ import {styles} from './style';
 import {Color, ThemeUtils} from '../../../utils';
 import Button from '../button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import LeafButton from '../leafbutton';
+import Routes from '../../../router/router';
 
 export default class Card extends Component {
   render() {
@@ -67,11 +69,11 @@ export default class Card extends Component {
                 xxsmall
                 mt={ThemeUtils.relativeHeight(1)}>
                 {this.props.openTime}
-              </Label> :  <Button
+              </Label> :  <LeafButton
                   btn_xs
                   text="Book"
                   style={{marginRight: ThemeUtils.relativeWidth(50)}}
-                  onPress={() => Alert.alert('Hii')}
+                  onPress={this.props.onPress}
                 />
 
               } 

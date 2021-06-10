@@ -77,13 +77,14 @@ const Button = props => {
 
   btnContainerStylesArray.push({
     // width: '100%',
-    borderRadius: 25,
+    borderTopLeftRadius: 10,
+    borderBottomRightRadius: 10
   })
   
   return (
       <TouchableOpacity onPress={props.onPress} style={[Style.content_center]}>
         <LinearGradient
-          colors={['#946a1e', '#dc9a28']}
+          colors={[Color.PRIMARY_DARK, Color.PRIMARY]}
           style={[btnContainerStylesArray,props.style]}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}>

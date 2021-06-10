@@ -41,6 +41,8 @@ import RangeSliders from '../../components/ui/range-selector';
 import {color} from 'react-native-reanimated';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import DropDown from '../../components/ui/dropdown';
+import RangeSlider from '../../components/ui/range-selector';
+import { goBack } from 'react-router-redux';
 
 const Toast = ({message}) => {
   ToastAndroid.showWithGravityAndOffset(
@@ -92,36 +94,36 @@ class Filter extends Component {
     return (
       <SafeAreaView style={Style.container}>
         <View style={styles.content}>
-          <Header title="Filter" />
+          <Header title="Filter" onPress={() => this.props.navigation.goBack()} />
           <View style={styles.serviceContainer}>
             <Label xlarge bold>
               Services
             </Label>
             <DropDown  />
           </View>
-
-          <View style={styles.serviceContainter}>
-            <Label xlarge bold mt={ThemeUtils.relativeHeight(2)}>
-              Sort By
-            </Label>
-            <DropDown />
-          </View>
           <View style={styles.priceContainer}>
             <Label xlarge bold>
               Price
             </Label>
           </View>
+          <View style={styles.serviceContainter}>
+            <Label xlarge bold mt={ThemeUtils.relativeHeight(2)}>
+              Sort By
+            </Label>
+            <DropDown sortBy="sortBy"/>
+          </View>
+          
           <View style={styles.serviceContainer}>
             <Label xlarge bold>
               Distance
-            </Label>
-            <Pickers />
+            </Label>  
+            <DropDown distance="distance"/>
           </View>
           <View style={styles.serviceContainer}>
             <Label xlarge bold>
               Rating
             </Label>
-            <Pickers />
+            <DropDown rating="rating"/>
           </View>
           <View style={styles.btnContainer}>
             <LeafButton

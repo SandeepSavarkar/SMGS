@@ -32,49 +32,7 @@ import SpecialCard from '../../components/ui/cardspl';
 import SearchBar from 'react-native-dynamic-search-bar';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Heading from '../../components/ui/headings';
-
-const DATA = [
-  {
-    id: 1,
-    img: require('../../assests/images/onBoard2.jpg'),
-    shopname: 'RedBox Barber',
-    address: '204,Somnath Vapi, India',
-    rating: '3.5',
-    openTime: '8:00 a.m - 9:00 p.m',
-  },
-  {
-    id: 2,
-    img: require('../../assests/images/onBoard2.jpg'),
-    shopname: 'Sancs',
-    address: 'vnalvvnlsv vnsadnv',
-    rating: '3.5',
-    openTime: '8:00 a.m - 9:00 p.m',
-  },
-  {
-    id: 3,
-    img: require('../../assests/images/onBoard2.jpg'),
-    shopname: 'Sanvdvs',
-    address: 'vnalvvnlsv vnsadnv',
-    rating: '3.5',
-    openTime: '8:00 a.m - 9:00 p.m',
-  },
-  {
-    id: 4,
-    img: require('../../assests/images/onBoard2.jpg'),
-    shopname: 'Sancs',
-    address: 'vnalvvnlsv vnsadnv',
-    rating: '3.5',
-    openTime: '8:00 a.m - 9:00 p.m',
-  },
-  {
-    id: 5,
-    img: require('../../assests/images/onBoard2.jpg'),
-    shopname: 'Sanvdvs',
-    address: 'vnalvvnlsv vnsadnv',
-    rating: '3.5',
-    openTime: '8:00 a.m - 9:00 p.m',
-  },
-];
+import DATA from '../../utils/data';
 
 class ViewSalons extends Component {
   render() {
@@ -85,7 +43,8 @@ class ViewSalons extends Component {
         address={item.address}
         rating={item.rating}
         openTime={item.openTime}
-        style={{width:ThemeUtils.relativeWidth(94)}}
+        style={{width: ThemeUtils.relativeWidth(94)}}
+        onPress={() => this.props.navigation.navigate(Routes.BookService)}
       />
     );
 
@@ -104,11 +63,18 @@ class ViewSalons extends Component {
         <View style={styles.content}>
           <View style={styles.filterContainer}>
             <Label xsmall>Your Location</Label>
-            <Icon name="filter" size={20} color={'gold'} />
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate(Routes.Filter)}>
+              <Icon name="filter-outline" size={20} color={Color.VIOLET_DARK} />
+            </TouchableOpacity>
           </View>
 
           <View style={styles.locationContainer}>
-            <Icon name="map-marker" size={20} />
+            <Icon
+              name="map-marker-radius-outline"
+              size={20}
+              color={Color.PRIMARY_DARK}
+            />
             <Label bolder large>
               User Location
             </Label>
@@ -124,17 +90,16 @@ class ViewSalons extends Component {
             //onChangeText={text => console.log(text)}
           />
           <ScrollView>
-
-          <View >
-           <Heading title="Top Branches" subtitle="View all"/>
-            <FlatList
-              data={DATA}
-              renderItem={renderItem}
-              keyExtractor={item => item.id}
-              horizontal={false}
-            />
-          </View>
-           </ScrollView> 
+            <View>
+              <Heading title="Top Salons" color={Color.PRIMARY_DARK} subtitle="View all" />
+              <FlatList
+                data={DATA}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+                horizontal={false}
+              />
+            </View>
+          </ScrollView>
 
           {/* <View>
           <Heading title="Top Branches" subtitle="View all"/>    

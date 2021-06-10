@@ -23,6 +23,7 @@ const Routes = {
   VerifyOtp:'VerifyOtp',
   Filter : 'Filter',
   BookService:'BookService',
-  BookConfirm:'BookConfirm'
+  BookConfirm:'BookConfirm',
+  TryOn: 'TryOn'
 };
 export default Routes;

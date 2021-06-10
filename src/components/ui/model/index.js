@@ -6,6 +6,7 @@ import Label from '../label';
 import {Color, ThemeUtils} from '../../../utils';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/Ionicons';
+import LeafButton from '../leafbutton';
 
 const getContent = props => {
   console.log(props);
@@ -15,11 +16,11 @@ const getContent = props => {
         style={{
           marginTop: ThemeUtils.relativeHeight(10),
         }}>
-        <View style={{marginVertical: 20}}>
-          <Button btn_lg text="Open Live Camera" onPress={props.onPress} />
+        <View style={{marginVertical: 20,width:ThemeUtils.relativeWidth(75)}}>
+          <LeafButton   text="Open Live Camera" onPress={props.onPressLiveCam} />
         </View>
         <View>
-          <Button btn_lg text="Upload Image" onPress={props.onPress} />
+           <LeafButton   text="Upload Image" onPress={props.onPress} />
         </View>
       </View>
     );
@@ -73,8 +74,8 @@ const Model = props => {
         transparent={true}
         visible={props.modalVisible}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          // setModalVisible(!modalVisible);
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
