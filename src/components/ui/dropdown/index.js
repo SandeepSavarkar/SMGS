@@ -2,8 +2,8 @@ import {useState, Component} from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import React from 'react';
 import { ThemeUtils } from '../../../utils';
-
-export default function DropDown() {
+import { Alert } from 'react-native';
+ const DropDown=( props)=> {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -24,8 +24,10 @@ export default function DropDown() {
       multiple={true}
       min={0}
       max={5}
+      onChangeSearchText={Alert.alert('sandhy')}
       //modalContentContainerStyle={{marginHorizontal:ThemeUtils.relativeWidth(2),marginLeft:100}}
       style={{marginHorizontal:ThemeUtils.relativeWidth(2),padding: 0}}
     />
   );
 }
+export default DropDown;

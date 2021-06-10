@@ -41,13 +41,14 @@ export default class ImageSwiper extends React.Component {
     console.log('====================================');
     return (
       <Swiper
+    
         activeDotColor={Color.PRIMARY}
         style={styles.wrapper}
         disableScrollViewPanResponder={true}     
       containerStyle={{height:ThemeUtils.relativeHeight(20)}}
-       
         loop={false}>
         {DATA.map((item, i) => {
+        
           return (
             <View style={styles.slide}>
               {/* <Text> {item.id} </Text> */}

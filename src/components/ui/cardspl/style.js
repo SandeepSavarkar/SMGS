@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     height: ThemeUtils.relativeHeight(27),
     width: ThemeUtils.relativeWidth(45),
     //borderRadius: 10,
-    borderTopLeftRadius: 20,
     borderBottomRightRadius: 10,
     backgroundColor: '#fff',
     elevation: 15,
@@ -25,7 +24,6 @@ const styles = StyleSheet.create({
    // marginRight: 10,
   },
   img: {
-    borderTopLeftRadius: 20,
     height: ThemeUtils.relativeHeight(16),
     width: ThemeUtils.relativeWidth(45),
   },

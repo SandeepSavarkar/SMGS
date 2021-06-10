@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
-import {View, Text, Alert, SafeAreaView, Image, FlatList, TouchableOpacity,Modal} from 'react-native';
+import {
+  View,
+  Text,
+  Alert,
+  SafeAreaView,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  Modal,
+} from 'react-native';
 import Style from '../../utils/CommonStyles';
 import Styles from '../../utils/CommonStyles';
 import {connect} from 'react-redux';
@@ -28,8 +37,22 @@ import BackButton from '../../components/ui/backbutton';
 import Header from '../../components/ui/header';
 import Model from '../../components/ui/model';
 import Icon from 'react-native-vector-icons/Ionicons';
+import DATA from '../../utils/data';
+import SpecialCard from '../../components/ui/cardspl';
 
-renderSpecialists = (item) => (
+
+renderSpeacialItem = item => (
+  <SpecialCard
+    img={item.img}
+    shopname={item.shopname}
+    address={item.address}
+    rating={item.rating}
+    openTime={item.openTime}
+    onPress={() => this.props.navigation.navigate(Routes.BookService)}
+  />
+);
+
+renderSpecialists = item => (
   <CardComponent
     img={item.img}
     label={item.name}
@@ -47,109 +70,132 @@ renderSpecialists = (item) => (
 class BookService extends Component {
   state = {
     isModalVisible: false,
-    imageModal : true
+    imageModal: true,
   };
 
   _hideModal = () => {
     this.setState({isModalVisible: false});
   };
 
-  setModalVisible = (status) => {
-    this.setState({ imageModal: true })
-}
+  setModalVisible = status => {
+    this.setState({imageModal: true});
+  };
 
-getPic = (type) => {
-  switch (type) {
-      case "camera":
-          launchCamera(
-              {
-                  mediaType: 'photo',
-                  includeBase64: false,
-                  maxHeight: 200,
-                  maxWidth: 200,
-              },
-              (response) => {
-                  this.imageResponse(response);
-              },
-          )
-          break;
+  showPackages=() =>{
+    return (
+      <View style={Style.mv}>
+        <Heading
+          title="Recommended Packages"
+          color={Color.PRIMARY_DARK}
+          subtitle="View all"
+        />
+        <FlatList
+          data={DATA}
+          renderItem={({item}) => this.renderSpeacialItem(item)}
+          keyExtractor={item => item.id}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+    );
+  };
+  
+  getPic = type => {
+    switch (type) {
+      case 'camera':
+        launchCamera(
+          {
+            mediaType: 'photo',
+            includeBase64: false,
+            maxHeight: 200,
+            maxWidth: 200,
+          },
+          response => {
+            this.imageResponse(response);
+          },
+        );
+        break;
 
       default:
-          launchImageLibrary(
-              {
-                  mediaType: 'photo',
-                  includeBase64: false,
-                  maxHeight: 200,
-                  maxWidth: 200,
-              },
-              (response) => {
-                  this.imageResponse(response);
-              },
-          )
-          break;
-  }
-}
-
+        launchImageLibrary(
+          {
+            mediaType: 'photo',
+            includeBase64: false,
+            maxHeight: 200,
+            maxWidth: 200,
+          },
+          response => {
+            this.imageResponse(response);
+          },
+        );
+        break;
+    }
+  };
 
   ImageUploadModal = () => {
-    console.log("UNder IMage MOdel----"+this.state.imageModal);
-    this._hideModal()
+    console.log('UNder IMage MOdel----' + this.state.imageModal);
+    this._hideModal();
     return (
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={this.state.imageModal}
-            onRequestClose={() => this.setModalVisible(false)}
-        >
-            <View
-                style={styles.modalContainer}
-            >
-                <View style={styles.modalInnerContainer}>
-                    <TouchableOpacity
-                        style={{ alignSelf: 'flex-end' }}
-                        onPress={() => this.setModalVisible(false)}
-                    >
-                        <Icon name="close" size={ThemeUtils.relativeWidth(7)} color={Color.BLACK} />
-                    </TouchableOpacity>
-                    <View style={styles.modalInnerButton}>
-                        <TouchableOpacity
-                            style={styles.camereImage}
-                            onPress={() => this.getPic("camera")}
-                        >
-                            <Icon name="camera" size={ThemeUtils.relativeWidth(7)} color={Color.BLACK} />
-                            <Text style={styles.cameraText}>Take Pic</Text>
-                        </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={this.state.imageModal}
+        onRequestClose={() => this.setModalVisible(false)}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalInnerContainer}>
+            <TouchableOpacity
+              style={{alignSelf: 'flex-end'}}
+              onPress={() => this.setModalVisible(false)}>
+              <Icon
+                name="close"
+                size={ThemeUtils.relativeWidth(7)}
+                color={Color.BLACK}
+              />
+            </TouchableOpacity>
+            <View style={styles.modalInnerButton}>
+              <TouchableOpacity
+                style={styles.camereImage}
+                onPress={() => this.getPic('camera')}>
+                <Icon
+                  name="camera"
+                  size={ThemeUtils.relativeWidth(7)}
+                  color={Color.BLACK}
+                />
+                <Text style={styles.cameraText}>Take Pic</Text>
+              </TouchableOpacity>
 
-                        <TouchableOpacity
-                            style={styles.camereImage}
-                            onPress={() => this.getPic("photo")}
-                        >
-                            <Icon name="camera" size={ThemeUtils.relativeWidth(7)} color={Color.BLACK} />
-                            <Text style={styles.cameraText}>Select image</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                </View>
+              <TouchableOpacity
+                style={styles.camereImage}
+                onPress={() => this.getPic('photo')}>
+                <Icon
+                  name="camera"
+                  size={ThemeUtils.relativeWidth(7)}
+                  color={Color.BLACK}
+                />
+                <Text style={styles.cameraText}>Select image</Text>
+              </TouchableOpacity>
             </View>
-        </Modal>
-    )
-}
+          </View>
+        </View>
+      </Modal>
+    );
+  };
 
-renderSpecialists = (item) => (
-  <CardComponent
-    img={item.img}
-    label={item.name}
-    style={{
-      width: ThemeUtils.relativeWidth(24),
-      height: ThemeUtils.relativeHeight(15),
-    }}
-    imgstyle={{
-      width: ThemeUtils.relativeWidth(20),
-      height: ThemeUtils.relativeHeight(10),
-      borderRadius: 200,
-    }}
-  />
-);
+  renderSpecialists = item => (
+    <CardComponent
+      img={item.img}
+      label={item.name}
+      style={{
+        width: ThemeUtils.relativeWidth(24),
+        height: ThemeUtils.relativeHeight(15),
+      }}
+      imgstyle={{
+        width: ThemeUtils.relativeWidth(20),
+        height: ThemeUtils.relativeHeight(10),
+        borderRadius: 200,
+      }}
+    />
+  );
   render() {
     //console.log(this.props.data.user);
     return (
@@ -179,7 +225,7 @@ renderSpecialists = (item) => (
                   color={Color.PRIMARY_DARK}
                   subtitle="Total $35.5"
                 />
-                <DropDown />
+                <DropDown  onChange={()=>this.showPackages()}/>
               </View>
 
               <View style={styles.tryOnContainer}>
@@ -189,7 +235,8 @@ renderSpecialists = (item) => (
                   //  toggle
                 />
 
-                <TouchableOpacity onPress={() => this.setState({isModalVisible: true})}>
+                <TouchableOpacity
+                  onPress={() => this.setState({isModalVisible: true})}>
                   <Icon name="chevron-forward-outline" size={25} />
                 </TouchableOpacity>
                 {/* <Button
@@ -201,7 +248,7 @@ renderSpecialists = (item) => (
 
               <View>
                 <Heading title="Select your date" color={Color.PRIMARY_DARK} />
-                <DatePicker />
+                <DatePicker o/>
               </View>
               <View style={Style.mv}>
                 <Heading
@@ -211,7 +258,7 @@ renderSpecialists = (item) => (
                 />
                 <FlatList
                   data={usersData}
-                  renderItem={({item})=>this.renderSpecialists(item)}
+                  renderItem={({item}) => this.renderSpecialists(item)}
                   keyExtractor={item => item.id}
                   horizontal={true}
                 />
@@ -291,7 +338,7 @@ renderSpecialists = (item) => (
                     visible={this.state.isModalVisible}
                     btn_liveCam="Open Live Camera"
                     btn_uploadImg="Upload Image"
-                    onPress={()=>this.ImageUploadModal()}
+                    onPress={() => this.ImageUploadModal()}
                   />
                 ) : null}
               </View>
