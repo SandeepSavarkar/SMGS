@@ -34,7 +34,8 @@ import ImageSwiper from '../../components/ui/swiper/';
 import {Col} from 'native-base';
 import CardComponent from '../../components/ui/normalcard';
 import {ScrollView} from 'react-native-gesture-handler';
-import {usersData} from '../../utils/data';
+import {hairstyleData} from '../../utils/data';
+
 import LeafButton from '../../components/ui/leafbutton';
 import Pickers from '../../components/ui/picker';
 import RangeSliders from '../../components/ui/range-selector';
@@ -43,7 +44,6 @@ import {widthPercentageToDP} from 'react-native-responsive-screen';
 import DropDown from '../../components/ui/dropdown';
 import RangeSlider from '../../components/ui/range-selector';
 import {goBack} from 'react-router-redux';
-
 
 class TryOn extends Component {
   // componentDidMount() {
@@ -74,36 +74,50 @@ class TryOn extends Component {
     return (
       <SafeAreaView style={Style.container}>
         <View style={styles.content}>
-            <View  style={{ flexDirection : 'row' ,justifyContent: 'space-between',marginTop: ThemeUtils.responsiveHeight(2)}}>
-            <Icon
-                name="keyboard-backspace"
-                size={40}
-                color={Color.PRIMARY_DARK}
-              />
-            <Icon
-                name="flash"
-                size={40}
-                color={Color.PRIMARY_DARK}
-              />
-            <Icons
-                name="cross"
-                size={40}
-                color={Color.PRIMARY_DARK}
-              /> 
+          <View
+            style={{
+              height: ThemeUtils.relativeHeight(90),
+              marginBottom: ThemeUtils.relativeHeight(2),
+              justifyContent: 'space-between',
+              //  backgroundColor: 'red',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: ThemeUtils.responsiveHeight(2),
+              }}>
+              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                <Icons name="cross" size={40} color={Color.PRIMARY_DARK} />
+              </TouchableOpacity>
 
+              <Icon name="flash" size={40} color={Color.PRIMARY_DARK} />
+
+              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                <Icon name="check" size={40} color={Color.PRIMARY_DARK} />
+              </TouchableOpacity>
             </View>
-
+            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+              <Image
+                style={{
+                  height: ThemeUtils.relativeHeight(60),
+                  width: ThemeUtils.relativeWidth(80),
+                }}
+                source={require('../../assests/images/13.jpg')}
+                resizeMode="cover"
+              />
+            </View>
             <View>
-            <View style={Style.mv}>
-                
+              <View style={[Style.mv, Style.fd, {alignItems: 'center'}]}>
                 <FlatList
-                  data={usersData}
+                  data={hairstyleData}
                   renderItem={({item}) => this.renderSpecialists(item)}
                   keyExtractor={item => item.id}
                   horizontal={true}
                 />
               </View>
             </View>
+          </View>
         </View>
       </SafeAreaView>
     );

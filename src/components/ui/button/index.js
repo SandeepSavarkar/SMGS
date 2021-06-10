@@ -56,6 +56,7 @@ const Button = props => {
     btnContainerStylesArray.push({
       paddingHorizontal: Platform.OS == 'ios' ? 10 : 20,
       paddingVertical: 13,
+      width:'70%'
     });
     btnTextStylesArray.push({
       fontSize: hp(3),

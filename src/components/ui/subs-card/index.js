@@ -11,8 +11,8 @@ const data = [
   {
     id: 1,
     image: require('../../../assests/images/package/grooming.png'),
-    name: 'BRONZE',
-    price: '₹3000',
+    name: 'GOLDEN',
+    price: '₹7000',
     color: '#DFAD4D',
     line1: '15% off in every services and \n packages',
     line2: '1 Facial/Month',
@@ -35,8 +35,8 @@ const data = [
   {
     id: 3,
     image: require('../../../assests/images/package/moustache.png'),
-    name: 'GOLDEN',
-    price: '₹7000',
+    name: 'BRONZE',
+    price: '₹3000',
     color: '#AA4A59',
     line1: '15% off in every services and \n packages',
     line2: '1 Facial/Month',
@@ -156,7 +156,7 @@ export class SubsCard extends Component {
                         xsmall
                         color={Color.WHITE}
                         backgroundColor={Color.BLACK}
-                        padding={5}>
+                        padding={0}>
                         {item.line5}
                       </Label>
                       <TouchableOpacity>

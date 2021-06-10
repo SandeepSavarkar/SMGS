@@ -10,22 +10,22 @@ let sortBy = [
 ];
 
 const services = [
-  {label: 'Waxing', value: 'banana'},
-  {label: 'Haic c', value: 'appbdfb'},
-  {label: 'Waxbdf', value: 'banbdfab'},
+  {label: 'Waxing', value: 'Waxing'},
+  {label: 'Hair Cut', value: 'Hait Cut'},
+  {label: 'HAir Smoothing', value: 'HAir Smoothing'},
 ];
 
 const distance = [
-  {label: 'under 5 km', value: 'banana'},
-  {label: 'under 10 km', value: 'appbdfb'},
-  {label: 'under 20 km', value: 'banbdfab'},
+  {label: 'under 5 km', value: 'under 5 km'},
+  {label: 'under 10 km', value: 'under 10 km'},
+  {label: 'under 20 km', value: 'under 20 km'},
 ];
 const rating = [
-  {label: '5 star', value: 'banana'},
-  {label: '4 star', value: 'appbdfb'},
-  {label: '3 star', value: 'banbdfab'},
-  {label: '2 star', value: 'appb cv '},
-  {label: '1 star', value: 'banb'},
+  {label: '5 star', value: '5 star'},
+  {label: '4 star', value: '4 star'},
+  {label: '3 star', value: '3 star'},
+  {label: '2 star', value: '2 star'},
+  {label: '1 star', value: '1 star'},
 ];
 
 const DropDown = props => {

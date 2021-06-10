@@ -62,7 +62,8 @@ class ViewSalons extends Component {
       <SafeAreaView style={Style.container}>
         <View style={styles.content}>
           <View style={styles.filterContainer}>
-            <Label xsmall>Your Location</Label>
+            <Label xsmall>Greetings..</Label>
+            {/* <Label large> Hello, Sandy</Label> */}
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate(Routes.Filter)}>
               <Icon name="filter-outline" size={20} color={Color.VIOLET_DARK} />
@@ -76,9 +77,9 @@ class ViewSalons extends Component {
               color={Color.PRIMARY_DARK}
             />
             <Label bolder large>
-              User Location
+              Hello, Sandy
             </Label>
-          </View>
+          </View> 
           <SearchBar
             placeholder="Search here"
             style={{
@@ -90,8 +91,8 @@ class ViewSalons extends Component {
             //onChangeText={text => console.log(text)}
           />
           <ScrollView>
-            <View>
-              <Heading title="Top Salons" color={Color.PRIMARY_DARK} subtitle="View all" />
+            <View style={Style.mv,{marginBottom:ThemeUtils.relativeHeight(15)}}>
+              <Heading title="Branch Salons" color={Color.PRIMARY_DARK} subtitle="View all" />
               <FlatList
                 data={DATA}
                 renderItem={renderItem}

@@ -201,11 +201,11 @@ class Home extends Component {
               <Heading
                 title="VIP Subscriptions"
                 color={Color.PRIMARY_DARK}
-                subtitle="Swipe>>"
+                // subtitle="Swipe toknow mor"
               />
             <SubsCard />
             </View>
-            <View style={Style.mv}>
+            <View style={Style.mv,{marginBottom:ThemeUtils.relativeHeight(15)}}>
               <Heading
                 title="Recommended Packages"
                 color={Color.PRIMARY_DARK}

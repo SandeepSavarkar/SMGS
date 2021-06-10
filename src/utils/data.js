@@ -96,4 +96,41 @@ export const usersData = [
     name:'David Beckhum'
   },
 ]; 
+export const hairstyleData = [
+  {
+    id: 6,
+    //img: require('../assests/images/hairstyle/1_MALE.jpg'),
+    //name: "Under Cut"
+  },
+  {
+    id: 7,
+    //img: require('../assests/images/hairstyle/1_MALE.jpg'),
+    //name: "Under Cut"
+  },
+  {
+    id: 1,
+    img: require('../assests/images/hairstyle/1_MALE.jpg'),
+    name: "Under Cut"
+  },
+  {
+    id: 2,
+    img: require('../assests/images/hairstyle/2_male.png'),
+    name:'One Sided'
+  },
+  {
+    id: 3,
+    img: require('../assests/images/hairstyle/3_male.jpg'),
+    name:'two Sided'
+  },
+  {
+    id: 4,
+    img: require('../assests/images/hairstyle/4_male.png'),
+    name:'Sided'
+  },
+  {
+    id: 5,
+    img: require('../assests/images/hairstyle/1_MALE.jpg'),
+    name:'David Beckhum'
+  },
+]; 
 export default DATA;

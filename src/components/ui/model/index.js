@@ -37,13 +37,13 @@ const getContent = props => {
           />
         </Animatable.View>
 
-        <Label xxlarge bolder align="center" color={Color.WHITE}>
+        <Label xxlarge bolder align="center" color={Color.BLACK}>
           Salon booked successfully.
         </Label>
-        <Label large mt={10} color={Color.WHITE} align="center">
+        <Label large mt={10} color={Color.BLACK} align="center">
           Please reach the salon on tha alloted time.
         </Label>
-        <Button btn_lg text="Continue Booking" onPress={props.onPress} />
+        <Button  text="COntinue" onPress={props.onPress} />
       </View>
     );
   } else {

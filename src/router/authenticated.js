@@ -144,10 +144,7 @@ const HomeScreen = () => {
         name={Routes.Career}
         options={{headerShown: false}}
         component={Career}></Stack.Screen>
-      <Stack.Screen
-        name={Routes.ViewSalons}
-        options={{headerShown: false}}
-        component={ViewSalons}></Stack.Screen>
+
       <Stack.Screen
         name={Routes.Search}
         options={{headerShown: false}}
@@ -225,7 +222,7 @@ class Authenticated extends Component {
       // <Stack.Navigator>
       //   <Stack.Screen name={Routes.Home}  options={{headerShown:false}} component={Home}></Stack.Screen>
       // </Stack.Navigator>
-      <Stack.Navigator initialRouteName={Routes.TryOn}>
+      <Stack.Navigator initialRouteName={Routes.BookService}>
         <Stack.Screen
           name={'MainScreen'}
           options={{headerShown: false}}
@@ -234,7 +231,10 @@ class Authenticated extends Component {
           name={Routes.Filter}
           options={{headerShown: false}}
           component={Filter}></Stack.Screen>
-
+        <Stack.Screen
+          name={Routes.ViewSalons}
+          options={{headerShown: false}}
+          component={ViewSalons}></Stack.Screen>
         <Stack.Screen
           name={Routes.TryOn}
           options={{headerShown: false}}

@@ -62,7 +62,7 @@ class LeafButton extends React.Component {
     } else if (this.props.btn_xl) {
       btnContainerStylesArray.push({
         paddingHorizontal: Platform.OS == 'ios' ? 10 : 20,
-        paddingVertical: 13,width: '20%',
+        paddingVertical: 13,
         width:'80%',
         borderTopLeftRadius: 10,
         borderBottomRightRadius: 10,
