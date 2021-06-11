@@ -8,20 +8,22 @@ export const styles = StyleSheet.create({
   },
   serviceContainer: {
     // backgroundColor:'red
-    marginVertical: ThemeUtils.relativeHeight(3),
+    marginVertical: ThemeUtils.relativeHeight(2),
   },
   priceContainer: {
    
      height: ThemeUtils.relativeHeight(15),
   },
   btnContainer: {
-    marginVertical: ThemeUtils.relativeHeight(3),
+    marginVertical: ThemeUtils.relativeHeight(4),
     height: ThemeUtils.relativeHeight(10),
     justifyContent: 'space-around',
     backgroundColor: Color.INPUT_BACKGROUND,
     padding: 15,
     flexDirection: 'row',
-    marginBottom:ThemeUtils.relativeHeight(0),
+    width:'100%'
+    //marginBottom:ThemeUtils.relativeHeight(10),
+
     
   },
 });

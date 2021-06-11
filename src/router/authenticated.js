@@ -222,7 +222,7 @@ class Authenticated extends Component {
       // <Stack.Navigator>
       //   <Stack.Screen name={Routes.Home}  options={{headerShown:false}} component={Home}></Stack.Screen>
       // </Stack.Navigator>
-      <Stack.Navigator initialRouteName={Routes.BookService}>
+      <Stack.Navigator initialRouteName={Routes.Filter}>
         <Stack.Screen
           name={'MainScreen'}
           options={{headerShown: false}}

@@ -246,7 +246,7 @@ class BookService extends Component {
                   color={Color.PRIMARY_DARK}
                   subtitle="Total $35.5"
                 />
-                <DropDown  br onChange={() => this.showPackages()} />
+                <DropDown  br onClose={() => console.log('services')} />
               </View>
 
               <View style={styles.tryOnContainer}>

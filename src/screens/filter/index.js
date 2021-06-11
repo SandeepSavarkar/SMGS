@@ -42,7 +42,7 @@ import {color} from 'react-native-reanimated';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import DropDown from '../../components/ui/dropdown';
 import RangeSlider from '../../components/ui/range-selector';
-import { goBack } from 'react-router-redux';
+import {goBack} from 'react-router-redux';
 
 const Toast = ({message}) => {
   ToastAndroid.showWithGravityAndOffset(
@@ -94,12 +94,15 @@ class Filter extends Component {
     return (
       <SafeAreaView style={Style.container}>
         <View style={styles.content}>
-          <Header title="Filter" onPress={() => this.props.navigation.goBack()} />
+          <Header
+            title="Filter"
+            onPress={() => this.props.navigation.goBack()}
+          />
           <View style={styles.serviceContainer}>
             <Label xlarge bold>
               Services
             </Label>
-            <DropDown  />
+            <DropDown />
           </View>
           <View style={styles.priceContainer}>
             <Label xlarge bold>
@@ -110,32 +113,36 @@ class Filter extends Component {
             <Label xlarge bold mt={ThemeUtils.relativeHeight(2)}>
               Sort By
             </Label>
-            <DropDown sortBy="sortBy"/>
+            <DropDown sortBy="sortBy" />
           </View>
-          
+
           <View style={styles.serviceContainer}>
             <Label xlarge bold>
               Distance
-            </Label>  
-            <DropDown distance="distance"/>
+            </Label>
+            <DropDown distance="distance" />
           </View>
           <View style={styles.serviceContainer}>
             <Label xlarge bold>
               Rating
             </Label>
-            <DropDown rating="rating"/>
-          </View>
-          <View style={styles.btnContainer}>
-            <LeafButton
-              btn_sm
-              borderColor={Color.PRIMARY}
-              backgroundColor={Color.INPUT_BACKGROUND}
-              text="CLEAR"
-            />
-            <LeafButton btn_sm backgroundColor={Color.PRIMARY} text="DONE" />
+            <DropDown rating="rating" />
           </View>
 
           {/* <RangeSliders /> */}
+        </View>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            style={{
+              width: '40%',
+              backgroundColor: Color.INPUT_BACKGROUND,
+              borderColor: Color.PRIMARY,
+              borderWidth:1,padding:12,borderTopLeftRadius:10,borderBottomRightRadius: 10
+            }}>
+            <Text style={{alignSelf:'center',fontSize:15}}>CLEAR</Text>
+          </TouchableOpacity>
+
+          <LeafButton btn_sm backgroundColor={Color.PRIMARY} text="DONE" />
         </View>
       </SafeAreaView>
     );

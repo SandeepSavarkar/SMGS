@@ -44,7 +44,7 @@ class LeafButton extends React.Component {
         borderBottomRightRadius: 20,
       });
       btnTextStylesArray.push({
-        fontSize: hp(2.2),
+        fontSize: hp(2),
         fontFamily: Platform.OS == 'ios' ? 'SofiaPro' : 'Sofia-Pro-Regular-Az',
       });
     } else if (this.props.btn_lg) {
