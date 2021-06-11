@@ -26,6 +26,7 @@ import {
 import Search from '../screens/search/index.js';
 import Filter from '../screens/filter/';
 import TryOn from '../screens/try-on';
+import FilterSalons from '../screens/filter-salons/index.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -167,6 +168,7 @@ const MainTAbNavigation = () => {
     <Tab.Navigator
       tabBarOptions={{
         activeTintColor: Color.PRIMARY_DARK,
+        inactiveTintColor:Color.BLACK,
         style: {height: 60},
         labelStyle: {marginBottom: 12},
         //iconStyle: {color:Color.PRIMARY_DARK }
@@ -178,7 +180,7 @@ const MainTAbNavigation = () => {
           tabBarIcon: ({color, size}) => (
             <Iconss
               name="md-home-outline"
-              color={Color.PRIMARY_DARK}
+              color={color}
               size={size}
             />
           ),
@@ -189,7 +191,7 @@ const MainTAbNavigation = () => {
         component={Nearby}
         options={{
           tabBarIcon: ({color, size}) => (
-            <Icon name="map-marker-radius-outline" size={size} />
+            <Icon name="map-marker-radius-outline" color={color} size={size} />
           ),
         }}
       />
@@ -198,7 +200,7 @@ const MainTAbNavigation = () => {
         component={BookService}
         options={{
           tabBarIcon: ({color, size}) => (
-            <Iconss name="md-calendar-outline" size={size} />
+            <Iconss name="md-calendar-outline" color={color} size={size} />
           ),
         }}
       />
@@ -208,7 +210,7 @@ const MainTAbNavigation = () => {
         component={Profile}
         options={{
           tabBarIcon: ({color, size}) => (
-            <Iconss name="person-circle-outline" size={size} />
+            <Iconss name="person-circle-outline" size={size} color={color}/>
           ),
         }}
       />
@@ -222,7 +224,7 @@ class Authenticated extends Component {
       // <Stack.Navigator>
       //   <Stack.Screen name={Routes.Home}  options={{headerShown:false}} component={Home}></Stack.Screen>
       // </Stack.Navigator>
-      <Stack.Navigator initialRouteName={Routes.Filter}>
+      <Stack.Navigator initialRouteName={Routes.Home}>
         <Stack.Screen
           name={'MainScreen'}
           options={{headerShown: false}}
@@ -235,6 +237,10 @@ class Authenticated extends Component {
           name={Routes.ViewSalons}
           options={{headerShown: false}}
           component={ViewSalons}></Stack.Screen>
+          <Stack.Screen
+          name={Routes.FilterSalons}
+          options={{headerShown: false}}
+          component={FilterSalons}></Stack.Screen>
         <Stack.Screen
           name={Routes.TryOn}
           options={{headerShown: false}}

@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     }
 
     ,fieldContainer:{
-       width:ThemeUtils.relativeWidth(80),
+       width:ThemeUtils.relativeWidth(70),
        height: ThemeUtils.relativeHeight(45),
        justifyContent:'space-around',
     }

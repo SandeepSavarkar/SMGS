@@ -6,6 +6,9 @@ import Styles from '../../utils/CommonStyles';
 import {styles} from './styles';
 import EditingInput from '../../components/ui/editing-input';
 import Button from '../../components/ui/button';
+import { ThemeUtils } from '../../utils';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import LeafButton from '../../components/ui/leafbutton';
 class Profile extends Component {
   render() {
     return (
@@ -22,22 +25,24 @@ class Profile extends Component {
           </Label>
         </View>
         <View style={styles.formContainer}>
-          
           <View style={styles.fieldContainer}>
-            <View >
+            <View>
               <EditingInput placeholder="Sandy" label="Name" />
             </View>
             <View>
-              <EditingInput placeholder="sandysawarkar20@gmail.com" label="Email"/>
+              <EditingInput
+                placeholder="sandysawarkar20@gmail.com"
+                label="Email"
+              />
             </View>
             <View>
-              <EditingInput placeholder="7773885303" label="Mobile"/>
+              <EditingInput placeholder="7773885303" label="Mobile" />
+            </View>
+            <View style={{alignItems: 'center '}}>
+              <LeafButton btn_xl text="Update" />
             </View>
             <View>
-              <EditingInput placeholder="sandy7894" label="Password" />
-            </View>
-            <View>  
-              <Button  btn_lg text="Update"/>
+                            
             </View>
           </View>
         </View>

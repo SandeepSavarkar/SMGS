@@ -24,6 +24,7 @@ const Routes = {
   Filter : 'Filter',
   BookService:'BookService',
   BookConfirm:'BookConfirm',
-  TryOn: 'TryOn'
+  TryOn: 'TryOn',
+  FilterSalons : 'FilterSalons'
 };
 export default Routes;

@@ -155,6 +155,7 @@ class BookConfirm extends Component {
 
   _hideModal = () => {
     this.setState({isModalVisible : false})
+    this.props.navigation.navigate(Routes.Home)
   }
 
   

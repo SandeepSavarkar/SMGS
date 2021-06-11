@@ -43,7 +43,11 @@ const getContent = props => {
         <Label large mt={10} color={Color.BLACK} align="center">
           Please reach the salon on tha alloted time.
         </Label>
-        <Button  text="COntinue" onPress={props.onPress} />
+        
+
+        <View style={{marginVertical: 20,width:ThemeUtils.relativeWidth(75),alignSelf: 'center'}}>
+          <LeafButton   text="Continue" onPress={props.onPress} />
+        </View>
       </View>
     );
   } else {

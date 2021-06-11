@@ -72,9 +72,10 @@ const DropDown = props => {
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}
-        multiple={true}
+        multiple={props.multiple ? props.multiple : false}
         min={0}
         max={5}
+        onChangeItem={item => setValue(...value,[item.value])}
         onClose={() => props.onClose ? setContent(!content) :null}
         // onChangeSearchText={Alert.alert('sandhy')}
         //modalContentContainerStyle={{marginHorizontal:ThemeUtils.relativeWidth(2),marginLeft:100}}

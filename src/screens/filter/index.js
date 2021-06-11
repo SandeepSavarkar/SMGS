@@ -26,6 +26,7 @@ import {CustomDrawerContent} from '../../router/authenticated';
 import HamburgerIcon from '../../components/ui/hamburger';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icons from 'react-native-vector-icons/Ionicons';
+import Iconss from 'react-native-vector-icons/FontAwesome';
 import Style from '../../utils/CommonStyles';
 import SearchBar from 'react-native-dynamic-search-bar';
 import Heading from '../../components/ui/headings';
@@ -43,6 +44,8 @@ import {widthPercentageToDP} from 'react-native-responsive-screen';
 import DropDown from '../../components/ui/dropdown';
 import RangeSlider from '../../components/ui/range-selector';
 import {goBack} from 'react-router-redux';
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import {height} from 'dom-helpers';
 
 const Toast = ({message}) => {
   ToastAndroid.showWithGravityAndOffset(
@@ -90,6 +93,13 @@ class Filter extends Component {
   //   Alert.alert('hihi');
   // };
 
+  state = {
+    scrollEnabled: true,
+  };
+
+  enableScroll = () => this.setState({scrollEnabled: true});
+  disableScroll = () => this.setState({scrollEnabled: false});
+
   render() {
     return (
       <SafeAreaView style={Style.container}>
@@ -108,6 +118,62 @@ class Filter extends Component {
             <Label xlarge bold>
               Price
             </Label>
+            <View
+              style={{
+                marginLeft: ThemeUtils.relativeWidth(1),
+                width: ThemeUtils.relativeWidth(96),
+                marginTop: ThemeUtils.relativeHeight(3),
+                height: ThemeUtils.relativeHeight(20),
+                // backgroundColor: 'red',
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+              }}>
+              <ScrollView scrollEnabled={this.state.scrollEnabled}>
+                <MultiSlider
+                  style={{marginTop: 10,height: ThemeUtils.relativeHeight(12),width: ThemeUtils.relativeWidth(80)}}
+                  isMarkersSeparated={true}
+                  sliderLength={300}
+                  enableLabel={true}
+                  enabledTwo={true}
+                  min={1500}
+                  
+                  customMarkerLeft={e => {
+                    return (
+                      <View style={{height: ThemeUtils.relativeHeight(10)}} >
+                        <Text> </Text>
+                        <Label align='center' small ms={20} >
+                          {e.currentValue}
+                        </Label>
+                        
+                        <Iconss
+                          name="dot-circle-o"
+                          size={20}
+                          color={Color.PRIMARY}
+                        style={{marginLeft:20,marginTop: 8}}
+                          />
+                      </View>
+                    );
+                  }}
+                  customMarkerRight={e => {
+                    return (
+                      <View>
+                        
+                        <Label small mb={10}>
+                          {e.currentValue}
+                        </Label>
+                        <Iconss
+                          name="dot-circle-o"
+                          size={25}
+                          color={Color.PRIMARY}
+                        />
+                      </View>
+                    );
+                  }}
+                  onValuesChangeStart={this.disableScroll}
+                  onValuesChangeFinish={this.enableScroll}
+                />
+              </ScrollView>
+            </View>
           </View>
           <View style={styles.serviceContainter}>
             <Label xlarge bold mt={ThemeUtils.relativeHeight(2)}>
@@ -137,12 +203,15 @@ class Filter extends Component {
               width: '40%',
               backgroundColor: Color.INPUT_BACKGROUND,
               borderColor: Color.PRIMARY,
-              borderWidth:1,padding:12,borderTopLeftRadius:10,borderBottomRightRadius: 10
+              borderWidth: 1,
+              padding: 12,
+              borderTopLeftRadius: 10,
+              borderBottomRightRadius: 10,
             }}>
-            <Text style={{alignSelf:'center',fontSize:15}}>CLEAR</Text>
+            <Text style={{alignSelf: 'center', fontSize: 15}}>CLEAR</Text>
           </TouchableOpacity>
 
-          <LeafButton btn_sm backgroundColor={Color.PRIMARY} text="DONE" />
+          <LeafButton btn_sm backgroundColor={Color.PRIMARY} text="DONE" onPress={()=>this.props.navigation.navigate(Routes.FilterSalons)}/>
         </View>
       </SafeAreaView>
     );
